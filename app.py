@@ -107,7 +107,8 @@ with header_col:
     st.title("🌿FloraLore: Your Very Personal Ethnobotany AI")
 
 with button_col:
-    send_disabled = len(st.session_state.messages) <= 2
+    # 0 or 1 means only the initial welcome message exists; enables once a plant exchange starts
+    send_disabled = len(st.session_state.messages) <= 1
     if st.button("📧 Send to Email", disabled=send_disabled, use_container_width=True):
         with st.spinner("Preparing your dossier..."):
             summary = ask_gemini([SUMMARY_REQUEST_PROMPT])
@@ -118,7 +119,6 @@ with button_col:
             st.error(f"Couldn't send that: {info}")
 
 st.caption(f"Logged in as {st.session_state.name} - updates go to {st.session_state.email_address}")
-
 
 # Render welcome message on initial load, or display full chat history on rerun
 if not st.session_state.messages:
@@ -136,22 +136,43 @@ user_input = st.chat_input(
 if user_input:
     photo = user_input.files[0] if user_input.files else None
     text = user_input.text
-    parts = []
 
-# Process photo attachment if present
-    if photo is not None:
-        photo_bytes = photo.getvalue()
-        add_message("user", "image", photo_bytes)
-        parts.append(types.Part.from_bytes(data=photo_bytes, mime_type=photo.type))
-
-# Process text input if present
-    if text:
+    # 1. Check if the user is asking to send the email directly in chat
+    if text and any(phrase in text.lower() for phrase in ["send email", "email me", "send to email"]):
         add_message("user", "text", text)
-        parts.append(text)
-    elif photo is not None:
-        parts.append("Analyze this plant image and provide the full Ethnobotanical Dossier.")
+        with st.spinner("Preparing and dispatching your dossier..."):
+            summary = ask_gemini([SUMMARY_REQUEST_PROMPT])
+            success, info = send_email(
+                st.session_state.email_address,
+                st.session_state.name,
+                summary,
+            )
+            if success:
+                add_message("assistant", "text", "📬 Dossier sent! Check your inbox.")
+            else:
+                add_message("assistant", "text", f"Couldn't send the email: {info}")
 
-# Dispatch query to Gemini and display reply
-    with st.spinner("Uncovering the lore..."):
-        answer = ask_gemini(parts)
-    add_message("assistant", "text", answer)
+    # 2. Otherwise, handle standard plant analysis / conversational input
+    else:
+        parts = []
+
+        # Process photo attachment if present
+        if photo is not None:
+            photo_bytes = photo.getvalue()
+            add_message("user", "image", photo_bytes)
+            parts.append(types.Part.from_bytes(data=photo_bytes, mime_type=photo.type))
+
+        # Process text input if present
+        if text:
+            add_message("user", "text", text)
+            parts.append(text)
+        elif photo is not None:
+            parts.append("Analyze this plant image and provide the full Ethnobotanical Dossier.")
+
+        # Dispatch query to Gemini and display reply
+        with st.spinner("Uncovering the lore..."):
+            answer = ask_gemini(parts)
+        add_message("assistant", "text", answer)
+        
+        # Trigger rerun so the top header email button immediately unlocks
+        st.rerun()
