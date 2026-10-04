@@ -1,4 +1,4 @@
-🌿 FloraLore — Ethnobotanical AI Assistant
+#🌿 FloraLore — Ethnobotanical AI Assistant
 "Where computer vision meets botanical mythology."
 
 FloraLore is an AI-powered conversational web application that bridges traditional botanical knowledge, folklore, and computer vision. By analyzing photos or descriptions of plants, leaves, and trees, FloraLore generates an Ethnobotanical Dossier detailing scientific taxonomy, cultural and religious symbolism, mythological folklore, and historical medicinal remedies. Users can also dispatch the complete generated dossier directly to their email inbox with a single click.
