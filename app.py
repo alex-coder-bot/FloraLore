@@ -104,7 +104,7 @@ if "onboarded" not in st.session_state:
 header_col, button_col = st.columns([5, 2], vertical_alignment="center")
 
 with header_col:
-    st.title("🌿FloraLore: Your Very Personal Ethnobotany AI")
+    st.title("🌿FloraLore- From leaf to lore in seconds")
 
 with button_col:
     send_disabled = len(st.session_state.messages) <= 2
