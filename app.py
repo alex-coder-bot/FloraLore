@@ -75,7 +75,7 @@ def send_email(to_email, user_name, summary):
 
 # Step 1: onboarding
 if "onboarded" not in st.session_state:
-    st.title("🌿FloraLore- Turning everyday plants into timeless stories")
+    st.title("🌿FloraLore- Your Very Personal Ethnobotany AI")
     st.caption("Snap the leaf, uncover ancient history straight to your inbox.")
     with st.form("onboarding_form"):
         name = st.text_input("Your name")
@@ -104,7 +104,7 @@ if "onboarded" not in st.session_state:
 header_col, button_col = st.columns([5, 2], vertical_alignment="center")
 
 with header_col:
-    st.title("🌿FloraLore: Your Very Personal Ethnobotany AI")
+    st.title("🌿FloraLore: Turning everyday plants into timeless stories")
 
 with button_col:
     # 0 or 1 means only the initial welcome message exists; enables once a plant exchange starts
