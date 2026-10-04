@@ -12,7 +12,7 @@ from prompts import SUMMARY_REQUEST_PROMPT, SYSTEM_PROMPT, WELCOME_MESSAGE_TEMPL
 MODEL_NAME = "gemini-3.5-flash"
 
 # Configure Streamlit page layout
-st.set_page_config(page_title="FloraLore - Your Very Personal Ethnobotany AI", page_icon="🌿", layout="centered")
+st.set_page_config(page_title="FloraLore - Your Personal Ethnobotany AI", page_icon="🌿", layout="centered")
 
 # Retrieve API key from Streamlit secrets
 GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
@@ -75,7 +75,7 @@ def send_email(to_email, user_name, summary):
 
 # Step 1: onboarding
 if "onboarded" not in st.session_state:
-    st.title("🌿FloraLore- Your Personal Ethnobotany AI")
+    st.title("🌿FloraLore- Turning everyday plants into timeless stories")
     st.caption("Snap the leaf, uncover ancient history straight to your inbox.")
     with st.form("onboarding_form"):
         name = st.text_input("Your name")
