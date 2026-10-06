@@ -102,25 +102,24 @@ if "onboarded" not in st.session_state:
 
 # Step 2: chat interface
 # Step 2: chat interface
-header_col, button_col = st.columns([5, 2], vertical_alignment="center")
+header_col, button_col = st.columns([3, 1], vertical_alignment="center")
 
 with header_col:
-    st.title("🌿 FloraLore: Turning everyday plants into timeless stories")
+    st.markdown("### 🌿 FloraLore")
+    st.caption("Turning everyday plants into timeless stories.")
 
 with button_col:
-    # 0 or 1 means only the initial welcome message exists; enables once a plant exchange starts
     send_disabled = len(st.session_state.messages) <= 1
     if st.button("📧 Send to Email", disabled=send_disabled, use_container_width=True):
         with st.spinner("Preparing your dossier..."):
             summary = ask_gemini([SUMMARY_REQUEST_PROMPT])
         success, info = send_email(st.session_state.email_address, st.session_state.name, summary)
         if success:
-            st.success("Sent! Check your inbox 📬")
+            st.toast("Sent! Check your inbox 📬")
         else:
             st.error(f"Couldn't send that: {info}")
 
-st.caption(f"Logged in as {st.session_state.name} - updates go to {st.session_state.email_address}")
-
+st.divider()
 # Render welcome message on initial load, or display full chat history on rerun
 if not st.session_state.messages:
     add_message("assistant", "text", WELCOME_MESSAGE_TEMPLATE.format(name=st.session_state.name))
