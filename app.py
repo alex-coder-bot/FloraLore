@@ -102,7 +102,7 @@ if "onboarded" not in st.session_state:
 
 # Step 2: chat interface
 # Step 2: chat interface
-header_col, button_col = st.columns([3, 1], vertical_alignment="center")
+header_col, button_col = st.columns([5, 1], vertical_alignment="center")
 
 with header_col:
     st.markdown("### 🌿 FloraLore")
