@@ -9,7 +9,7 @@ from google.genai import types
 from prompts import SUMMARY_REQUEST_PROMPT, SYSTEM_PROMPT, WELCOME_MESSAGE_TEMPLATE
 
 # --- Configuration & Model Setup ---
-MODEL_NAME = "gemini-3.5-flash"
+MODEL_NAME = "gemini-3.5-flash-lite"
 
 # Configure Streamlit page layout
 st.set_page_config(page_title="FloraLore - Your Personal Ethnobotany AI", page_icon="🌿", layout="centered")
