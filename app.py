@@ -106,7 +106,7 @@ header_col, button_col = st.columns([3, 1], vertical_alignment="center")
 
 with header_col:
     st.markdown("# 🌿 FloraLore")
-    st.caption("Turning everyday plants into timeless stories.", vertical_alignment="center")
+    st.caption("Turning everyday plants into timeless stories.", layout="center")
 
 with button_col:
     send_disabled = len(st.session_state.messages) <= 1
