@@ -101,10 +101,11 @@ if "onboarded" not in st.session_state:
     st.stop()
 
 # Step 2: chat interface
+# Step 2: chat interface
 header_col, button_col = st.columns([5, 2], vertical_alignment="center")
 
 with header_col:
-    st.title("🌿FloraLore: Turning everyday plants into timeless stories")
+    st.title("🌿 FloraLore: Turning everyday plants into timeless stories")
 
 with button_col:
     # 0 or 1 means only the initial welcome message exists; enables once a plant exchange starts
