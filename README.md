@@ -8,7 +8,7 @@ FloraLore is an AI-powered conversational web application that bridges tradition
 
 **Ethnobotanical Dossiers:** Deep dives into historical lore, folklore narratives, indigenous applications, and botanical trivia.
 
-**Interactive Conversational AI:** Built using Google's Gemini 3.5 Flash vision model.
+**Interactive Conversational AI:** Built using Google's Gemini 3.5 Flash lite vision model, to ensure low-latency responses, reliable throughput, and optimal token efficiency during multi-turn vision analysis.
 
 **Automated Email Dispatch:** Direct-to-inbox dispatch powered by Python's native smtplib and Gmail SMTP with TLS/SSL encryption.
 
@@ -17,7 +17,7 @@ FloraLore is an AI-powered conversational web application that bridges tradition
 🛠️ Tech Stack
  **Frontend / Framework:** Streamlit
 
-**AI and Vision Model:** Google Gemini 3.5 Flash 
+**AI and Vision Model:** Google Gemini 3.5 Flash lite model (switched to gemini-3.5-flash-lite from gemini-3.5 model for faster inference and token efficiency)
 
 **Email Service:** Python smtplib + MIME via Gmail SMTP 
 
